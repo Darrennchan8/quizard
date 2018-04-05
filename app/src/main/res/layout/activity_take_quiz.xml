@@ -10,7 +10,7 @@
     tools:context=".TakeQuizActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/quiz_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -22,11 +22,12 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <Button
+        android:id="@+id/begin_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:gravity="center_vertical|center_horizontal"
         android:onClick="beginQuiz"
-        android:text="Begin" />
+        android:text="@string/begin" />
 </LinearLayout>
