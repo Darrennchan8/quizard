@@ -19,7 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".TakeQuizActivity" />
-        <activity android:name=".CreateQuizActivity"></activity>
+        <activity android:name=".CreateQuizActivity" />
+        <activity
+            android:name=".QuestionView"
+            android:label="@string/title_activity_question_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
