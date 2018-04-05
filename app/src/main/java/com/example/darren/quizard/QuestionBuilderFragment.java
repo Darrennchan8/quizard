@@ -20,9 +20,6 @@ import com.example.darren.quizard.Quiz.MultipleChoiceAnswer;
 import com.example.darren.quizard.Quiz.Question;
 import com.example.darren.quizard.Quiz.QuestionType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +36,7 @@ public class QuestionBuilderFragment extends Fragment {
     }
 
     public QuestionBuilderFragment() {
-        this.mQuestion = null;
+        this.mQuestion = new Question();
     }
 
     public Question getCurrentState() {
@@ -54,17 +51,14 @@ public class QuestionBuilderFragment extends Fragment {
             switch (questionType.getSelectedItemPosition()) {
                 case 0:
                     currentState.setQuestionType(QuestionType.MULTIPLE_CHOICE);
-                    List<MultipleChoiceAnswer> answers =
-                            new ArrayList<>(multipleChoiceAnswers.getChildCount() - 1);
                     for (int i = 0; i != multipleChoiceAnswers.getChildCount() - 1; i++) {
                         CheckBox box = multipleChoiceAnswers.getChildAt(i)
                                 .findViewById(R.id.correctness_box);
                         EditText answer = multipleChoiceAnswers.getChildAt(i)
                                 .findViewById(R.id.answer_choice);
-                        answers.add(new MultipleChoiceAnswer(box.isChecked(),
+                        currentState.addMultipleChoiceAnswer(new MultipleChoiceAnswer(box.isChecked(),
                                 answer.getText().toString()));
                     }
-                    currentState.setMultipleChoiceAnswers(answers);
                     break;
                 case 1:
                     currentState.setQuestionType(QuestionType.SHORT_ANSWER);

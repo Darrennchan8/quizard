@@ -1,6 +1,7 @@
 package com.example.darren.quizard.Quiz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Question {
@@ -29,7 +30,7 @@ public class Question {
                     List<MultipleChoiceAnswer> multipleChoiceAnswers) {
         this.questionType = questionType;
         this.questionText = questionText;
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+        this.multipleChoiceAnswers = new ArrayList<>(multipleChoiceAnswers);
         this.shortAnswer = null;
     }
 
@@ -58,11 +59,11 @@ public class Question {
     }
 
     public List<MultipleChoiceAnswer> getMultipleChoiceAnswers() {
-        return multipleChoiceAnswers;
+        return Collections.unmodifiableList(multipleChoiceAnswers);
     }
 
-    public void setMultipleChoiceAnswers(List<MultipleChoiceAnswer> multipleChoiceAnswers) {
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+    public void addMultipleChoiceAnswer(MultipleChoiceAnswer multipleChoiceAnswer) {
+        this.multipleChoiceAnswers.add(multipleChoiceAnswer);
     }
 
     public String getShortAnswer() {

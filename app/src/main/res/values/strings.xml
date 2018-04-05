@@ -32,6 +32,7 @@
     <string name="title_activity_question_view">Quiz Name</string>
     <string name="question_number">1</string>
     <string name="question_total">20</string>
+    <string name="begin">Begin</string>
     <string-array name="question_view_header">
         <item>Question </item>
         <item>@string/question_number</item>
