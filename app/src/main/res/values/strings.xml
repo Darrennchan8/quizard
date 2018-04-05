@@ -5,6 +5,7 @@
     <string name="teacher">Teacher</string>
     <string name="create_quiz">Create Quiz</string>
     <string name="quiz_name">Quiz Name</string>
+    <string name="begin">Begin</string>
     <string name="untitled_quiz">Untitled Quiz</string>
     <string name="quiz_start">Start: </string>
     <string name="quiz_start_date">Start Date</string>
@@ -26,6 +27,7 @@
     <string name="correct_answer">Correct Answer</string>
     <string name="publish">Publish</string>
     <string name="or">or</string>
+    <string name="mock_quiz">{\"quiz\":{\"quiz_id\":\"4567\",\"quiz_name\":\"Bird Colors Quiz\",\"access_key\":\"key2\"},\"questions\":[{\"question_text\":\"What color is a canary?\",\"choices\":[{\"choice\":{\"text\":\"Red\",\"correct\":false}},{\"choice\":{\"text\":\"Yellow\",\"correct\":true}},{\"choice\":{\"text\":\"Blue\",\"correct\":false}}]},{\"question_text\":\"What color is a raven?\",\"choices\":[{\"choice\":{\"text\":\"Black\",\"correct\":true}},{\"choice\":{\"text\":\"Orange\",\"correct\":false}},{\"choice\":{\"text\":\"Purple\",\"correct\":false}}]},{\"question_text\":\"What color is a bluejay?\",\"choices\":[{\"choice\":{\"text\":\"Green\",\"correct\":false}},{\"choice\":{\"text\":\"Red\",\"correct\":false}},{\"choice\":{\"text\":\"Blue\",\"correct\":true}}]},{\"question_text\":\"What color is a cardinal?\",\"choices\":[{\"choice\":{\"text\":\"Red\",\"correct\":true}},{\"choice\":{\"text\":\"Grey\",\"correct\":false}},{\"choice\":{\"text\":\"Brown\",\"correct\":false}}]},{\"question_text\":\"What color is a dove?\",\"choices\":[{\"choice\":{\"text\":\"Blue\",\"correct\":false}},{\"choice\":{\"text\":\"White\",\"correct\":true}},{\"choice\":{\"text\":\"Yellow\",\"correct\":false}}]}]}</string>
     <string name="title_activity_question_view">Quiz Name</string>
     <string name="question_number">1</string>
     <string name="question_total">20</string>
