@@ -1,20 +1,27 @@
 package com.example.darren.quizard.Quiz;
 
 public class MultipleChoiceAnswer {
-    private boolean correct;
     private String text;
+    private boolean correct;
 
-    public MultipleChoiceAnswer(boolean correct, String text) {
-        this.setCorrect(correct);
+    public MultipleChoiceAnswer(String text, boolean correct) {
         this.setText(text);
+        this.setCorrect(correct);
     }
 
     public MultipleChoiceAnswer(String text) {
-        this(false, text);
+        this(text, false);
     }
 
     public MultipleChoiceAnswer() {
         this("");
+    }
+
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
     }
 
     public boolean isCorrect() {
@@ -23,14 +30,6 @@ public class MultipleChoiceAnswer {
 
     public void setCorrect(boolean correct) {
         this.correct = correct;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     @Override
