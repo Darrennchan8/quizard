@@ -16,9 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
-import com.example.darren.quizard.Quiz.MultipleChoiceAnswer;
-import com.example.darren.quizard.Quiz.Question;
-import com.example.darren.quizard.Quiz.QuestionType;
+import com.example.darren.quizard.quiz.MultipleChoiceAnswer;
+import com.example.darren.quizard.quiz.Question;
+import com.example.darren.quizard.quiz.QuestionType;
 
 
 /**

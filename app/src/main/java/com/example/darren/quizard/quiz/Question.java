@@ -1,4 +1,4 @@
-package com.example.darren.quizard.Quiz;
+package com.example.darren.quizard.quiz;
 
 import java.util.ArrayList;
 import java.util.Collections;

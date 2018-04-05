@@ -1,4 +1,4 @@
-package com.example.darren.quizard.Quiz;
+package com.example.darren.quizard.quiz;
 
 public enum QuestionType {
     MULTIPLE_CHOICE,

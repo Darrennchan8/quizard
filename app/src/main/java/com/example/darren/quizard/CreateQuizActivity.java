@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
-import com.example.darren.quizard.Quiz.Quiz;
+import com.example.darren.quizard.quiz.Quiz;
 
 public class CreateQuizActivity extends AppCompatActivity {
 

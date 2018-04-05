@@ -1,4 +1,4 @@
-package com.example.darren.quizard.Quiz;
+package com.example.darren.quizard.quiz;
 
 public class MultipleChoiceAnswer {
     private String text;
