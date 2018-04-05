@@ -1,5 +1,6 @@
 package com.example.darren.quizard.Quiz;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,5 +61,27 @@ public class Quiz {
                 ", password='" + password + '\'' +
                 ", questions=" + questions +
                 '}';
+    }
+
+    public static Quiz mockQuiz() {
+        Quiz quiz = new Quiz("Presidents Quiz", "Presidents!");
+        quiz.addQuestion(new Question(QuestionType.MULTIPLE_CHOICE, "Who is the president of the United States?", new ArrayList<MultipleChoiceAnswer>() {{
+            add(new MultipleChoiceAnswer("George Washington"));
+            add(new MultipleChoiceAnswer("Abraham Lincoln"));
+            add(new MultipleChoiceAnswer("Donald Trump", true));
+            add(new MultipleChoiceAnswer("Barack Obama"));
+        }}));
+        quiz.addQuestion(new Question(QuestionType.MULTIPLE_CHOICE, "Who was a past US president?", new ArrayList<MultipleChoiceAnswer>() {{
+            add(new MultipleChoiceAnswer("George Washington", true));
+            add(new MultipleChoiceAnswer("Cleopatra"));
+            add(new MultipleChoiceAnswer("Barack Obama", true));
+            add(new MultipleChoiceAnswer("Putin"));
+        }}));
+        quiz.addQuestion(new Question(QuestionType.SHORT_ANSWER, "Who was the president before Donald Trump?", "Barack Obama"));
+        quiz.addQuestion(new Question(QuestionType.MULTIPLE_CHOICE, "Do you want extra points?", new ArrayList<MultipleChoiceAnswer>() {{
+            add(new MultipleChoiceAnswer("YES!!!", true));
+            add(new MultipleChoiceAnswer("no"));
+        }}));
+        return quiz;
     }
 }
