@@ -19,15 +19,16 @@ import com.example.darren.quizard.Quiz.Quiz;
  */
 public class QuizOptionsFragment extends Fragment {
 
-    private Quiz mOptions = null;
+    private Quiz mOptions;
 
     public QuizOptionsFragment() {
-        // Required empty public constructor
+        this.mOptions = new Quiz();
     }
 
     public Quiz getCurrentState() {
-        Quiz currentState = new Quiz();
+        Quiz currentState = this.mOptions;
         if (getView() != null) {
+            currentState = new Quiz();
             EditText quizName = getView().findViewById(R.id.input_quiz_name);
             EditText quizPassword = getView().findViewById(R.id.quiz_password);
             currentState.setTitle(quizName.getText().toString());

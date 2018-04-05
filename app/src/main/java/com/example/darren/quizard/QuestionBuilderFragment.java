@@ -40,9 +40,10 @@ public class QuestionBuilderFragment extends Fragment {
     }
 
     public Question getCurrentState() {
-        Question currentState = new Question();
+        Question currentState = this.mQuestion;
         View v = getView();
         if (v != null) {
+            currentState = new Question();
             EditText questionName = v.findViewById(R.id.question_name);
             Spinner questionType = v.findViewById(R.id.question_type_spinner);
             LinearLayout multipleChoiceAnswers = v.findViewById(R.id.multiple_choice_list);
