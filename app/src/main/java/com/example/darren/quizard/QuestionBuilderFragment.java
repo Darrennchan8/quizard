@@ -57,8 +57,8 @@ public class QuestionBuilderFragment extends Fragment {
                                 .findViewById(R.id.correctness_box);
                         EditText answer = multipleChoiceAnswers.getChildAt(i)
                                 .findViewById(R.id.answer_choice);
-                        currentState.addMultipleChoiceAnswer(new MultipleChoiceAnswer(box.isChecked(),
-                                answer.getText().toString()));
+                        currentState.addMultipleChoiceAnswer(new MultipleChoiceAnswer(answer.getText().toString(),
+                                box.isChecked()));
                     }
                     break;
                 case 1:
