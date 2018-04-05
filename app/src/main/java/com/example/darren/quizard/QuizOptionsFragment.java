@@ -1,0 +1,75 @@
+package com.example.darren.quizard;
+
+
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class QuizOptionsFragment extends Fragment {
+
+
+    public QuizOptionsFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_quiz_options, container, false);
+    }
+
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public void onStart() {
+        super.onStart();
+//        ActionBar bar = getSupportActionBar();
+        ActionBar bar = null;
+        final EditText quizName;
+        final EditText startDate = getView().findViewById(R.id.quiz_start_date);
+        final EditText startTime = getView().findViewById(R.id.quiz_start_time);
+        final EditText endDate = getView().findViewById(R.id.quiz_end_date);
+        final EditText endTime = getView().findViewById(R.id.quiz_end_time);
+        if (bar == null) {
+            Log.e(getClass().getName(), "getActionBar() returned null.");
+            quizName = getView().findViewById(R.id.input_quiz_name);
+            quizName.setVisibility(View.VISIBLE);
+        } else {
+            bar.setCustomView(R.layout.editable_actionbar);
+            bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            quizName = (EditText) bar.getCustomView();
+        }
+//        startDate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e(getClass().getName(), "Start date field clicked!");
+//                final DatePicker picker = new DatePicker(CreateQuizActivity.this);
+//                new AlertDialog.Builder(CreateQuizActivity.this)
+//                        .setView(picker)
+//                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) { dialog.cancel(); }
+//                        })
+//                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Log.e(getClass().getName(), "OK clicked!");
+//                            }
+//                        })
+//                        .show();
+//            }
+//        });
+//        FloatingActionButton btnNewQuestion = getView().findViewById(R.id.new_question);
+    }
+}

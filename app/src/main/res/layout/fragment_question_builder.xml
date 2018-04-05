@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QuestionBuilderFragment"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/question_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/question_name"
+        android:inputType="textAutoCorrect|textAutoComplete|textMultiLine"/>
+
+    <TextView
+        android:id="@+id/label_question_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_type"
+        android:textSize="16sp"
+        android:padding="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/question_name"/>
+    <Spinner
+        android:id="@+id/question_type_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/label_question_type"
+        app:layout_constraintTop_toTopOf="@id/label_question_type"
+        app:layout_constraintBottom_toBottomOf="@id/label_question_type"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/multiple_choice_section"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/question_type_spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <LinearLayout
+            android:id="@+id/multiple_choice_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include
+                android:id="@+id/new_multiple_choice_item"
+                layout="@layout/new_multiple_choice_item" />
+        </LinearLayout>
+    </ScrollView>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/short_response_section"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/question_type_spinner"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/short_response_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/correct_answer"
+            android:inputType="text|textAutoCorrect"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

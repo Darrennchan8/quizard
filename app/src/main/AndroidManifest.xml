@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TakeQuizActivity" />
-        <activity android:name=".CreateQuizActivity"></activity>
+        <activity android:name=".CreateQuizActivity" android:label="@string/create_quiz" />
     </application>
 
 </manifest>

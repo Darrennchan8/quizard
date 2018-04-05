@@ -3,4 +3,27 @@
     <string name="who_are_you">I Am A…</string>
     <string name="student">Student</string>
     <string name="teacher">Teacher</string>
+    <string name="create_quiz">Create Quiz</string>
+    <string name="quiz_name">Quiz Name</string>
+    <string name="untitled_quiz">Untitled Quiz</string>
+    <string name="quiz_start">Start: </string>
+    <string name="quiz_start_date">Start Date</string>
+    <string name="quiz_start_time">Start Time</string>
+    <string name="quiz_end">End: </string>
+    <string name="quiz_end_date">End Date</string>
+    <string name="quiz_end_time">End Time</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="question_name">Question Name</string>
+    <string name="question_type">Question Type</string>
+    <string-array name="question_types">
+        <item>Multiple Choice</item>
+        <item>Short Response</item>
+    </string-array>
+    <string name="answer_choice">Answer Choice</string>
+    <string name="delete_answer_choice">Delete Answer Choice</string>
+    <string name="new_answer_choice">New Answer Choice</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="publish">Publish</string>
+    <string name="or">or</string>
 </resources>
