@@ -4,7 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
+
+import com.example.darren.quizard.Quiz.Quiz;
 
 public class CreateQuizActivity extends AppCompatActivity {
 
@@ -12,17 +15,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
-//        QuizOptionsFragment initialScreen = new QuizOptionsFragment();
-//        getSupportFragmentManager().beginTransaction()
-//                .add(R.id.root_view, initialScreen).commit();
-//
-//        QuestionBuilderFragment newQuestionFragment = new QuestionBuilderFragment();
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.root_view, newQuestionFragment)
-//                .addToBackStack(null)
-//                .commit();
-        final QuizCreationPageAdapter quizCreationPageAdapter =
-                new QuizCreationPageAdapter(this, getSupportFragmentManager());
+        final QuizCreationPageAdapter quizCreationPageAdapter = new QuizCreationPageAdapter(getSupportFragmentManager());
         final ViewPager viewPager = findViewById(R.id.root_view);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             private int currPage = 0;
@@ -50,5 +43,11 @@ public class CreateQuizActivity extends AppCompatActivity {
             }
         });
         viewPager.setAdapter(quizCreationPageAdapter);
+        quizCreationPageAdapter.setOnSubmitListener(new QuizCreationPageAdapter.OnSubmitListener() {
+            @Override
+            public void onSubmit(Quiz quiz) {
+                Log.i(getClass().getName(), quiz.toString());
+            }
+        });
     }
 }

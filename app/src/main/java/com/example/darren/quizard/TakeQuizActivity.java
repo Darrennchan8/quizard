@@ -1,8 +1,8 @@
 package com.example.darren.quizard;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class TakeQuizActivity extends AppCompatActivity {
@@ -14,9 +14,7 @@ public class TakeQuizActivity extends AppCompatActivity {
     }
 
     public void beginQuiz(View v) {
-
-        Intent i;
-        i = new Intent(TakeQuizActivity.this, QuestionView.class);
+        Intent i = new Intent(this, QuestionView.class);
         startActivity(i);
     }
 }

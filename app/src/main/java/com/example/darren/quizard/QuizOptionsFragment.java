@@ -2,7 +2,7 @@ package com.example.darren.quizard;
 
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
@@ -11,20 +11,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.darren.quizard.Quiz.Quiz;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class QuizOptionsFragment extends Fragment {
 
+    private Quiz mOptions = null;
 
     public QuizOptionsFragment() {
         // Required empty public constructor
     }
 
+    public Quiz getCurrentState() {
+        Quiz currentState = new Quiz();
+        if (getView() != null) {
+            EditText quizName = getView().findViewById(R.id.input_quiz_name);
+            EditText quizPassword = getView().findViewById(R.id.quiz_password);
+            currentState.setTitle(quizName.getText().toString());
+            currentState.setPassword(quizPassword.getText().toString());
+        }
+        return currentState;
+    }
+
+    public void setCurrentState(Quiz options) {
+        if (getView() != null && options != null) {
+            EditText quizName = getView().findViewById(R.id.input_quiz_name);
+            EditText quizPassword = getView().findViewById(R.id.quiz_password);
+            quizName.setText(options.getTitle());
+            quizPassword.setText(options.getPassword());
+        }
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onResume() {
+        super.onResume();
+        this.restoreState();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.saveState();
+    }
+
+    public void saveState() {
+        this.mOptions = getCurrentState();
+    }
+
+    public void restoreState() {
+        this.setCurrentState(this.mOptions);
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_quiz_options, container, false);
@@ -37,6 +79,7 @@ public class QuizOptionsFragment extends Fragment {
 //        ActionBar bar = getSupportActionBar();
         ActionBar bar = null;
         final EditText quizName;
+        final EditText quizPassword = getView().findViewById(R.id.quiz_password);
         final EditText startDate = getView().findViewById(R.id.quiz_start_date);
         final EditText startTime = getView().findViewById(R.id.quiz_start_time);
         final EditText endDate = getView().findViewById(R.id.quiz_end_date);

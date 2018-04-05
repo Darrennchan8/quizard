@@ -1,11 +1,9 @@
 package com.example.darren.quizard;
 
-
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +13,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.example.darren.quizard.Quiz.MultipleChoiceAnswer;
+import com.example.darren.quizard.Quiz.Question;
+import com.example.darren.quizard.Quiz.QuestionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,78 +29,8 @@ import java.util.List;
  */
 public class QuestionBuilderFragment extends Fragment {
 
-    public enum QuestionType {
-        MULTIPLE_CHOICE,
-        SHORT_ANSWER
-    }
 
     private Question mQuestion;
-
-    public static class Question {
-        private QuestionType questionType;
-        private String questionText;
-        private List<Pair<Boolean, String>> multipleChoiceAnswers;
-        private String shortAnswer;
-
-        public Question() {
-            this(QuestionType.MULTIPLE_CHOICE);
-        }
-        public Question(QuestionType questionType) {
-            this(questionType, "");
-        }
-        public Question(QuestionType questionType, String questionText) {
-            this.questionType = questionType;
-            this.questionText = questionText;
-            this.multipleChoiceAnswers = questionType == QuestionType.MULTIPLE_CHOICE ? new ArrayList<Pair<Boolean, String>>() : null;
-            this.shortAnswer = questionType == QuestionType.SHORT_ANSWER ? "" : null;
-        }
-        public Question(QuestionType questionType, String questionText,
-                        List<Pair<Boolean, String>> multipleChoiceAnswers) {
-            this.questionType = questionType;
-            this.questionText = questionText;
-            this.multipleChoiceAnswers = multipleChoiceAnswers;
-            this.shortAnswer = null;
-        }
-        public Question(QuestionType questionType, String questionText,
-                        String shortAnswer) {
-            this.questionType = questionType;
-            this.questionText = questionText;
-            this.multipleChoiceAnswers = null;
-            this.shortAnswer = shortAnswer;
-        }
-
-        public QuestionType getQuestionType() {
-            return questionType;
-        }
-
-        public void setQuestionType(QuestionType questionType) {
-            this.questionType = questionType;
-        }
-
-        public String getQuestionText() {
-            return questionText;
-        }
-
-        public void setQuestionText(String questionText) {
-            this.questionText = questionText;
-        }
-
-        public List<Pair<Boolean, String>> getMultipleChoiceAnswers() {
-            return multipleChoiceAnswers;
-        }
-
-        public void setMultipleChoiceAnswers(List<Pair<Boolean, String>> multipleChoiceAnswers) {
-            this.multipleChoiceAnswers = multipleChoiceAnswers;
-        }
-
-        public String getShortAnswer() {
-            return shortAnswer;
-        }
-
-        public void setShortAnswer(String shortAnswer) {
-            this.shortAnswer = shortAnswer;
-        }
-    }
 
     @Override
     public void onPause() {
@@ -124,14 +54,15 @@ public class QuestionBuilderFragment extends Fragment {
             switch (questionType.getSelectedItemPosition()) {
                 case 0:
                     currentState.setQuestionType(QuestionType.MULTIPLE_CHOICE);
-                    List<Pair<Boolean, String>> answers =
+                    List<MultipleChoiceAnswer> answers =
                             new ArrayList<>(multipleChoiceAnswers.getChildCount() - 1);
                     for (int i = 0; i != multipleChoiceAnswers.getChildCount() - 1; i++) {
                         CheckBox box = multipleChoiceAnswers.getChildAt(i)
                                 .findViewById(R.id.correctness_box);
                         EditText answer = multipleChoiceAnswers.getChildAt(i)
                                 .findViewById(R.id.answer_choice);
-                        answers.add(new Pair<Boolean, String>(box.isChecked(), answer.getText().toString()));
+                        answers.add(new MultipleChoiceAnswer(box.isChecked(),
+                                answer.getText().toString()));
                     }
                     currentState.setMultipleChoiceAnswers(answers);
                     break;
@@ -158,13 +89,13 @@ public class QuestionBuilderFragment extends Fragment {
                     while (multipleChoiceAnswers.getChildCount() > 1) {
                         multipleChoiceAnswers.removeViewAt(0);
                     }
-                    for (Pair<Boolean, String> answer : question.getMultipleChoiceAnswers()) {
+                    for (MultipleChoiceAnswer answer : question.getMultipleChoiceAnswers()) {
                         View answerChoice = LayoutInflater.from(getContext()).inflate(
                                 R.layout.multiple_choice_item, multipleChoiceAnswers, false);
                         CheckBox box = answerChoice.findViewById(R.id.correctness_box);
                         EditText answerChoiceText = answerChoice.findViewById(R.id.answer_choice);
-                        box.setChecked(answer.first);
-                        answerChoiceText.setText(answer.second);
+                        box.setChecked(answer.isCorrect());
+                        answerChoiceText.setText(answer.getText());
                         multipleChoiceAnswers.addView(answerChoice, multipleChoiceAnswers.getChildCount() - 1);
                     }
                     break;
@@ -185,7 +116,7 @@ public class QuestionBuilderFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_question_builder, container, false);

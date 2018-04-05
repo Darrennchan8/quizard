@@ -9,14 +9,23 @@
     android:padding="16dp">
 
     <include
-        layout="@layout/editable_actionbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/input_quiz_name"
+        layout="@layout/editable_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         tools:visibility="visible"/>
 
+    <EditText
+        android:id="@+id/quiz_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/quiz_password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/input_quiz_name" />
+
     <TextView
+        android:visibility="gone"
         android:id="@+id/quiz_start_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,9 +33,10 @@
         android:textSize="18sp"
         android:layout_marginTop="8dp"
         app:layout_goneMarginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/input_quiz_name"/>
+        app:layout_constraintTop_toBottomOf="@id/quiz_password" />
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/quiz_start_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,13 +45,16 @@
         tools:text="1/1/14"
         android:inputType="none"
         android:focusable="false"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:hint="@string/quiz_start_date"
         app:layout_constraintBaseline_toBaselineOf="@id/quiz_start_label"
-        app:layout_constraintLeft_toRightOf="@+id/quiz_start_label"
-        app:layout_constraintRight_toLeftOf="@+id/quiz_start_time"/>
+        app:layout_constraintLeft_toRightOf="@id/quiz_start_label"
+        app:layout_constraintRight_toLeftOf="@id/quiz_start_time" />
 
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/quiz_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,32 +70,37 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/quiz_end_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quiz_end"
         android:textSize="18sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/quiz_start_label"
-        app:layout_constraintRight_toRightOf="@+id/quiz_start_label"/>
+        app:layout_constraintTop_toBottomOf="@id/quiz_start_label"
+        app:layout_constraintRight_toRightOf="@id/quiz_start_label" />
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/quiz_end_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:textColor="#000"
         android:textSize="18sp"
         android:inputType="none"
         android:focusable="false"
         android:hint="@string/quiz_end_date"
         app:layout_constraintBaseline_toBaselineOf="@id/quiz_end_label"
-        app:layout_constraintEnd_toStartOf="@+id/quiz_end_time"
+        app:layout_constraintEnd_toStartOf="@id/quiz_end_time"
         app:layout_constraintLeft_toRightOf="@id/quiz_end_label"
         tools:text="1/1/14" />
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/quiz_end_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -96,6 +114,6 @@
         android:focusable="false"
         app:layout_constraintBaseline_toBaselineOf="@id/quiz_end_label"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/quiz_start_time"/>
+        app:layout_constraintLeft_toLeftOf="@id/quiz_start_time" />
 
 </android.support.constraint.ConstraintLayout>

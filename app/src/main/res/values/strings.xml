@@ -26,6 +26,8 @@
     <string name="correct_answer">Correct Answer</string>
     <string name="publish">Publish</string>
     <string name="or">or</string>
+    <string name="quiz_password">Quiz Password</string>
+
     <string name="title_activity_question_view">Quiz Name</string>
     <string name="question_number">1</string>
     <string name="question_total">20</string>
