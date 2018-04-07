@@ -1,5 +1,7 @@
 package com.example.darren.quizard.quiz;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,30 +17,28 @@ public class Question {
         this(QuestionType.MULTIPLE_CHOICE);
     }
 
-    public Question(QuestionType questionType) {
+    public Question(@NonNull QuestionType questionType) {
         this(questionType, "");
     }
 
-    public Question(QuestionType questionType, String questionText) {
+    public Question(@NonNull QuestionType questionType, @NonNull String questionText) {
         this.questionType = questionType;
         this.questionText = questionText;
-        this.multipleChoiceAnswers = questionType == QuestionType.MULTIPLE_CHOICE ? new ArrayList<MultipleChoiceAnswer>() : null;
-        this.shortAnswer = questionType == QuestionType.SHORT_ANSWER ? "" : null;
+        this.multipleChoiceAnswers = new ArrayList<>();
+        this.shortAnswer = "";
     }
 
-    public Question(QuestionType questionType, String questionText,
-                    List<MultipleChoiceAnswer> multipleChoiceAnswers) {
-        this.questionType = questionType;
+    public Question(@NonNull String questionText, @NonNull List<MultipleChoiceAnswer> multipleChoiceAnswers) {
+        this.questionType = QuestionType.MULTIPLE_CHOICE;
         this.questionText = questionText;
         this.multipleChoiceAnswers = new ArrayList<>(multipleChoiceAnswers);
-        this.shortAnswer = null;
+        this.shortAnswer = "";
     }
 
-    public Question(QuestionType questionType, String questionText,
-                    String shortAnswer) {
-        this.questionType = questionType;
+    public Question(@NonNull String questionText, @NonNull String shortAnswer) {
+        this.questionType = QuestionType.SHORT_ANSWER;
         this.questionText = questionText;
-        this.multipleChoiceAnswers = null;
+        this.multipleChoiceAnswers = new ArrayList<>();
         this.shortAnswer = shortAnswer;
     }
 
@@ -46,7 +46,7 @@ public class Question {
         return questionType;
     }
 
-    public void setQuestionType(QuestionType questionType) {
+    public void setQuestionType(@NonNull QuestionType questionType) {
         this.questionType = questionType;
     }
 
@@ -54,7 +54,7 @@ public class Question {
         return questionText;
     }
 
-    public void setQuestionText(String questionText) {
+    public void setQuestionText(@NonNull String questionText) {
         this.questionText = questionText;
     }
 
@@ -62,7 +62,7 @@ public class Question {
         return Collections.unmodifiableList(multipleChoiceAnswers);
     }
 
-    public void addMultipleChoiceAnswer(MultipleChoiceAnswer multipleChoiceAnswer) {
+    public void addMultipleChoiceAnswer(@NonNull MultipleChoiceAnswer multipleChoiceAnswer) {
         this.multipleChoiceAnswers.add(multipleChoiceAnswer);
     }
 
@@ -70,7 +70,7 @@ public class Question {
         return shortAnswer;
     }
 
-    public void setShortAnswer(String shortAnswer) {
+    public void setShortAnswer(@NonNull String shortAnswer) {
         this.shortAnswer = shortAnswer;
     }
 

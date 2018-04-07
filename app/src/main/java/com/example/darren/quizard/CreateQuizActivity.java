@@ -2,14 +2,22 @@ package com.example.darren.quizard;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.darren.quizard.quiz.Quiz;
+import com.example.darren.quizard.quiz.QuizUtils;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 public class CreateQuizActivity extends AppCompatActivity {
+
+    public static class Status {
+        public static final int PUBLISHED = 1;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,21 @@ public class CreateQuizActivity extends AppCompatActivity {
         quizCreationPageAdapter.setOnSubmitListener(new QuizCreationPageAdapter.OnSubmitListener() {
             @Override
             public void onSubmit(Quiz quiz) {
-                Log.i(getClass().getName(), quiz.toString());
+                final Snackbar loadingBar = Snackbar.make(viewPager, R.string.publishing_quiz, Snackbar.LENGTH_INDEFINITE);
+                loadingBar.show();
+                QuizUtils.publish(quiz, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        loadingBar.dismiss();
+                        if (databaseError == null) {
+                            setResult(Status.PUBLISHED);
+                            finish();
+                        } else {
+                            Log.e(getClass().getName(), databaseError.toString());
+                            Snackbar.make(viewPager, R.string.error_publishing_quiz, Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
     }
