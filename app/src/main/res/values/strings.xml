@@ -42,5 +42,8 @@
         <item> of </item>
         <item>@string/question_total</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!---<string name="question_view_header_string">@array/question_view_header</string> nope-->
 </resources>
