@@ -19,12 +19,15 @@ public class QuizUtils {
     }
 
     public static void publish(Quiz quiz, DatabaseReference.CompletionListener completionListener) {
-        FirebaseDatabase.getInstance().getReference().child(QUIZZES_ARRAY_KEY).push()
-                .setValue(quiz, completionListener);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
+                .child(QUIZZES_ARRAY_KEY).push();
+        ref.keepSynced(true);
+        ref.setValue(quiz, completionListener);
     }
 
     public static void getAllQuizzes(final QuizQueryCallback callback) {
         DatabaseReference quizzes = FirebaseDatabase.getInstance().getReference().child(QUIZZES_ARRAY_KEY);
+        quizzes.keepSynced(true);
         quizzes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
