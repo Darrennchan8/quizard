@@ -32,7 +32,7 @@ public class TakeQuizActivity extends AppCompatActivity {
 //            Log.e(getClass().getName(), "Could not read JSON", e);
 //            throw new RuntimeException(e);
 //        }
-//        beginQuiz = (Button) findViewById(R.id.begin_quiz);
+        beginQuiz = (Button) findViewById(R.id.begin_quiz);
     }
 
     public void beginQuiz(View v) {
