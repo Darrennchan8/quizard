@@ -22,8 +22,8 @@
        <!-- <activity android:name=".CreateQuizActivity" />-->
         <activity
             android:name=".QuestionView"
-            android:label="@string/title_activity_question_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
