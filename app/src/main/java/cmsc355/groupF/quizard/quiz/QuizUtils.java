@@ -1,4 +1,4 @@
-package com.example.darren.quizard.quiz;
+package cmsc355.groupF.quizard.quiz;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

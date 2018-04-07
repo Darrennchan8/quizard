@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1029143824117:android:8c44ff5cae0a4b4e",
         "android_client_info": {
-          "package_name": "com.example.darren.quizard"
+          "package_name": "cmsc355.groupF.quizard"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1029143824117-arit4i5itapj02o7veie5a3egrbis6db.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.darren.quizard",
+            "package_name": "cmsc355.groupF.quizard",
             "certificate_hash": "358bc80f20220e4d7738ccf37b563ccf4dda91a2"
           }
         },

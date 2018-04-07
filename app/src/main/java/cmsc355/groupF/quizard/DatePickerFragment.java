@@ -1,4 +1,4 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;

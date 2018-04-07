@@ -1,4 +1,4 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.darren.quizard.quiz.Quiz;
+import cmsc355.groupF.quizard.quiz.Quiz;
 
 
 /**

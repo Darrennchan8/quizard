@@ -1,4 +1,4 @@
-package com.example.darren.quizard.quiz;
+package cmsc355.groupF.quizard.quiz;
 
 public class MultipleChoiceAnswer {
     private String text;

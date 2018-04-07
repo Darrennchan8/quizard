@@ -1,14 +1,14 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.darren.quizard.quiz.Quiz;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import cmsc355.groupF.quizard.quiz.Quiz;
 
 public class QuizCreationPageAdapter extends FragmentStatePagerAdapter {
     public interface OnSubmitListener {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.darren.quizard">
+    package="cmsc355.groupF.quizard">
 
     <application
         android:allowBackup="true"

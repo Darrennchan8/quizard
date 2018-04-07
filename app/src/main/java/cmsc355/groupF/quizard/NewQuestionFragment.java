@@ -1,4 +1,4 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 
 import android.os.Bundle;

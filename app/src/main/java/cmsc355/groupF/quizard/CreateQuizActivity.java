@@ -1,4 +1,4 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,10 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
-import com.example.darren.quizard.quiz.Quiz;
-import com.example.darren.quizard.quiz.QuizUtils;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+
+import cmsc355.groupF.quizard.quiz.Quiz;
+import cmsc355.groupF.quizard.quiz.QuizUtils;
 
 public class CreateQuizActivity extends AppCompatActivity {
 

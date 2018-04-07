@@ -1,4 +1,4 @@
-package com.example.darren.quizard;
+package cmsc355.groupF.quizard;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,9 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
-import com.example.darren.quizard.quiz.MultipleChoiceAnswer;
-import com.example.darren.quizard.quiz.Question;
-import com.example.darren.quizard.quiz.QuestionType;
+import cmsc355.groupF.quizard.quiz.MultipleChoiceAnswer;
+import cmsc355.groupF.quizard.quiz.Question;
+import cmsc355.groupF.quizard.quiz.QuestionType;
 
 
 /**
