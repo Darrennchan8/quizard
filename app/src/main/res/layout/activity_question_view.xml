@@ -16,6 +16,10 @@
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></fragment>
+        android:layout_height="match_parent"
+        android:name="cmsc355.groupF.quizard.QuestionViewFragment"
+        android:id="@+id/question_view"
+        >
+    </fragment>
 
 </LinearLayout>

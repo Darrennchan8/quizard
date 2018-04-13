@@ -3,13 +3,20 @@ package cmsc355.groupF.quizard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseError;
+
+import java.util.List;
+
+import cmsc355.groupF.quizard.quiz.Quiz;
+import cmsc355.groupF.quizard.quiz.QuizUtils;
+
 public class TakeQuizActivity extends AppCompatActivity {
 
-    TextView quizName;
     Button beginQuiz;
 
     @Override
@@ -21,18 +28,23 @@ public class TakeQuizActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-//        JSONObject mockQuiz = null;
-//        try {
-//            mockQuiz = new JSONObject(getString(R.string.mock_quiz));
-//            quizName = findViewById(R.id.quiz_name);
-//            String name = mockQuiz.getJSONObject("quiz").getString("quiz_name");
-//            quizName.setText(name);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            Log.e(getClass().getName(), "Could not read JSON", e);
-//            throw new RuntimeException(e);
-//        }
-        beginQuiz = (Button) findViewById(R.id.begin_quiz);
+        QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
+            @Override
+            public void onLoad(List<Quiz> quizzes) {
+                Quiz current = quizzes.get(0);
+                String currentTitle = current.getTitle();
+                Log.i("TakeQuizActivity", currentTitle);
+                TextView quizName = findViewById(R.id.quiz_name);
+                quizName.setText(currentTitle);
+            }
+
+            @Override
+            public void onError(DatabaseError err) {
+
+            }
+        });
+
+        beginQuiz = findViewById(R.id.begin_quiz);
     }
 
     public void beginQuiz(View v) {
