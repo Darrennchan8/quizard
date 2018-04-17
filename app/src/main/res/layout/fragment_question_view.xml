@@ -1,6 +1,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,23 +11,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="18dp"
         android:layout_marginStart="1dp"
         android:gravity="center_vertical|center_horizontal|center"
-        android:text="Question  "
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:text="Question "
+        android:textAllCaps="true"
+        android:textSize="26sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/question_num"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginRight="18dp"
-        android:layout_marginLeft="1dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/question_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/question_number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAllCaps="true"
+        android:textSize="26sp"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
@@ -36,7 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" of "
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAllCaps="true"
+        android:textSize="26sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/question_num"
         app:layout_constraintEnd_toStartOf="@+id/num_questions"
         app:layout_constraintStart_toEndOf="@+id/textView" />
@@ -46,11 +49,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/question_total"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAllCaps="true"
+        android:textSize="26sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2" />
 
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="QUESTION TEXT HERE"
+        android:layout_margin="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_num"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="119dp" />
 
     <Button
         android:id="@+id/buttonNextQuestion"
@@ -58,14 +80,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:textSize="18sp"
         android:padding="16dp"
+        android:text="Next"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </android.support.constraint.ConstraintLayout>

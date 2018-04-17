@@ -33,7 +33,7 @@ public class TakeQuizActivity extends AppCompatActivity {
             public void onLoad(List<Quiz> quizzes) {
                 Quiz current = quizzes.get(0);
                 String currentTitle = current.getTitle();
-                Log.i("TakeQuizActivity", currentTitle);
+//                Log.i("TakeQuizActivity", currentTitle);  DEBUGGING CODE, NOT NEEDED?
                 TextView quizName = findViewById(R.id.quiz_name);
                 quizName.setText(currentTitle);
             }
