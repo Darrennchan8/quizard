@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class QuestionViewPageAdapter extends FragmentStatePagerAdapter {
 
     public QuestionViewPageAdapter(FragmentManager fm) {
         super(fm);
-        this.mQuestions = new LinkedList<>();
+        this.mQuestions = new ArrayList<>();
         this.setOnSubmitListener(null);
     }
 
@@ -34,19 +35,14 @@ public class QuestionViewPageAdapter extends FragmentStatePagerAdapter {
     }
 
     public void populateQuiz(Quiz current) {
-        for (int i = 0; i < current.getQuestions().size(); i++) {
-            mQuestions.add(new QuestionViewFragment(current.getQuestions().get(i),i));
+        for (Question quizQuestion : current.getQuestions()) {
+            mQuestions.add(new QuestionViewFragment(quizQuestion));
         }
     }
 
     @Override
     public Fragment getItem(int position) {
-        position--;
-        if (position == -1) {
-            return this.mQuestions.get(0);
-        } else {
-            return mQuestions.get(position);
-        }
+        return mQuestions.get(position);
     }
 
     @Override

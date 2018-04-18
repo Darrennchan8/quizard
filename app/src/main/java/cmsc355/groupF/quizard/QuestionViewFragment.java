@@ -23,17 +23,14 @@ import cmsc355.groupF.quizard.quiz.QuizUtils;
 public class QuestionViewFragment extends Fragment {
 
     private Question mQuestion;
-    private int mIndex;
 
     public QuestionViewFragment() {
-        mQuestion = new Question();
-        mIndex = 1;
+        this(new Question());
     }
 
     //ANDROID STUDIO WARNS THAT THIS CONSTRUCTOR SHOULD NOT BE USED
-    public QuestionViewFragment(Question question, int index) {
+    public QuestionViewFragment(Question question) {
         mQuestion = question;
-        mIndex = index;
     }
 
 
@@ -49,29 +46,14 @@ public class QuestionViewFragment extends Fragment {
     @SuppressWarnings("ConstantConditions")
     public void onStart() {
         super.onStart();
-        QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
-            @Override
-            public void onLoad(List<Quiz> quizzes) {
-                Quiz current = quizzes.get(0);
-                fragmentBuild(current, 1);
-            }
-
-            @Override
-            public void onError(DatabaseError err) {
-
-            }
-        });
+        fragmentBuild(mQuestion);
     }
 
-    public void fragmentBuild(Quiz quiz, int index) {
-        List<Question> currentQs = quiz.getQuestions();
-        String currentQuestion = currentQs.get(0).getQuestionText();
+    public void fragmentBuild(Question question) {
+//        List<Question> currentQs = quiz.getQuestions();
+//        String currentQuestion = currentQs.get(0).getQuestionText();
         TextView questionText = getView().findViewById(R.id.question_text);
-        questionText.setText(currentQuestion);
-        TextView questionNum = getView().findViewById(R.id.question_num);
-        questionNum.setText(Integer.toString(index));
-        TextView questionTotal = getView().findViewById(R.id.num_questions);
-        questionTotal.setText(Integer.toString(currentQs.size()));
+        questionText.setText(question.getQuestionText());
 
     }
 
