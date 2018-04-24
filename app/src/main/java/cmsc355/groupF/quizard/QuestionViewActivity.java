@@ -17,7 +17,7 @@ import java.util.List;
 import cmsc355.groupF.quizard.quiz.Quiz;
 import cmsc355.groupF.quizard.quiz.QuizUtils;
 
-public class QuestionView extends AppCompatActivity {
+public class QuestionViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

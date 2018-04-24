@@ -16,7 +16,7 @@
         android:layout_marginTop="60dp"
         app:fontFamily="sans-serif"
         android:gravity="center_horizontal"
-        android:text="@string/quiz_name"
+        tools:text="@string/quiz_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         tools:layout_editor_absoluteX="65dp"
         tools:layout_editor_absoluteY="58dp" />

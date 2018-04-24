@@ -82,6 +82,19 @@ public class Quiz {
             add(new MultipleChoiceAnswer("YES!!!", true));
             add(new MultipleChoiceAnswer("no"));
         }}));
+        quiz.addQuestion(new Question("Which president served two non-consecutive terms?", new ArrayList<MultipleChoiceAnswer>() {{
+            add(new MultipleChoiceAnswer("Grover Cleveland", true));
+            add(new MultipleChoiceAnswer("James Monroe"));
+            add(new MultipleChoiceAnswer("Barack Obama"));
+            add(new MultipleChoiceAnswer("Ronald Reagan"));
+        }}));
+        quiz.addQuestion(new Question("Which president was married to a first lady named Ladybird?", new ArrayList<MultipleChoiceAnswer>() {{
+            add(new MultipleChoiceAnswer("George Washington"));
+            add(new MultipleChoiceAnswer("James K. Polk"));
+            add(new MultipleChoiceAnswer("Rutherford B. Hayes"));
+            add(new MultipleChoiceAnswer("Lyndon Johnson", true));
+        }}));
         return quiz;
     }
+
 }
