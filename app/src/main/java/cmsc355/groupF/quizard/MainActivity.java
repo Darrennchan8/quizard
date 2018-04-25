@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         studentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TakeQuizActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FindQuizActivity.class);
                 startActivityForResult(intent, TAKE_QUIZ_ACTIVITY);
             }
         });
