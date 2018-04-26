@@ -15,18 +15,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TakeQuizActivity"
-            android:label="@string/app_name"/>
+        <activity android:name=".TakeQuizActivity" />
         <activity
             android:name=".CreateQuizActivity"
             android:label="@string/create_quiz" />
         <activity
             android:name=".QuestionViewActivity"
             android:label="@string/app_name" />
+        <activity android:name=".FindQuizActivity"></activity>
     </application>
 
 </manifest>
