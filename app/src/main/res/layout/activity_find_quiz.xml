@@ -7,24 +7,25 @@
     android:orientation="vertical"
     tools:context="cmsc355.groupF.quizard.FindQuizActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/find_quiz_text_view"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="48dp" />
-
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/searchQuizBtn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickSearch"
-        android:text="Search" />
+        android:hint="Search for a quiz"
+        android:padding="8dp"
+        />
+
+
+    <!--<ScrollView-->
+        <!--android:layout_width=""-->
+        <!--android:layout_height="">-->
+        <!--<ListView-->
+            <!--android:layout_width=""-->
+            <!--android:layout_height="">-->
+            <!--<LinearLayout-->
+                <!--android:layout_width=""-->
+                <!--android:layout_height=""></LinearLayout>-->
+        <!--</ListView>-->
+    <!--</ScrollView>-->
+
 </android.widget.LinearLayout>
