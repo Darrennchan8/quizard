@@ -33,6 +33,13 @@ public class MultipleChoiceAnswer {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return obj == this ||
+                obj instanceof MultipleChoiceAnswer && this.getText().equals(((MultipleChoiceAnswer) obj).getText()) ||
+                obj instanceof String && this.getText().equals(obj);
+    }
+
+    @Override
     public String toString() {
         return "MultipleChoiceAnswer{" +
                 "correct=" + correct +

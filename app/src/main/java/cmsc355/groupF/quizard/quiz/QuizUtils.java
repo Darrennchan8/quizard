@@ -21,7 +21,6 @@ public class QuizUtils {
     public static void publish(Quiz quiz, DatabaseReference.CompletionListener completionListener) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
                 .child(QUIZZES_ARRAY_KEY).push();
-        ref.keepSynced(true);
         ref.setValue(quiz, completionListener);
     }
 
@@ -45,4 +44,5 @@ public class QuizUtils {
             }
         });
     }
+
 }

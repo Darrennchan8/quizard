@@ -10,10 +10,12 @@ import java.util.List;
 
 import cmsc355.groupF.quizard.quiz.Quiz;
 
-public class QuizCreationPageAdapter extends FragmentStatePagerAdapter {
+public class QuizCreationPageAdapter extends FragmentStatePagerAdapter implements ViewPagerBuilder.RobustAdapter {
+
     public interface OnSubmitListener {
         void onSubmit(Quiz quiz);
     }
+
     @Override
     public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
