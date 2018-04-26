@@ -90,9 +90,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-<!--            <include
-                android:id="@+id/multiple_choice_answer"
-                layout="@layout/multiple_choice_answer" />-->
         </LinearLayout>
     </ScrollView>
     <android.support.constraint.ConstraintLayout
