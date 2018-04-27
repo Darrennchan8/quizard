@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".TakeQuizActivity">
 
@@ -13,23 +11,24 @@
         android:id="@+id/quiz_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:fontFamily="sans-serif"
         android:gravity="center_horizontal"
         tools:text="@string/quiz_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="58dp" />
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/begin_quiz"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/begin_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:padding="24dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="125dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:onClick="beginQuiz"
-        android:text="@string/begin" />
-</LinearLayout>
+        android:padding="18dp"
+        android:text="@string/begin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quiz_name" />
+
+</android.support.constraint.ConstraintLayout>

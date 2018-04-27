@@ -2,15 +2,11 @@ package cmsc355.groupF.quizard;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -25,17 +21,17 @@ public class QuestionViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question_view);
         final QuestionViewPageAdapter questionViewPageAdapter = new QuestionViewPageAdapter(getSupportFragmentManager());
         final ViewPager viewPager = findViewById(R.id.root_view);
+        final int quizIndex = getIntent().getIntExtra(FindQuizActivity.QUIZ_INDEX, 0);
         QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
             @Override
             public void onLoad(List<Quiz> quizzes) {
-                Quiz current = quizzes.get(0);
+                Quiz current = quizzes.get(quizIndex);
                 questionViewPageAdapter.populateQuiz(current);
                 viewPager.setAdapter(questionViewPageAdapter);
             }
 
             @Override
             public void onError(DatabaseError err) {
-
             }
         });
 
