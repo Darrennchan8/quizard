@@ -7,11 +7,10 @@
     android:padding="8dp"
     tools:context="cmsc355.groupF.quizard.FindQuizActivity">
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+    <ListView
+        android:id="@+id/ListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for a quiz"
         android:padding="8dp"
         />
 

@@ -17,10 +17,12 @@ import cmsc355.groupF.quizard.quiz.QuizUtils;
 public class TakeQuizActivity extends AppCompatActivity {
 
     Button beginQuiz;
+    int quizIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        quizIndex = getIntent().getIntExtra("INDEX_OF_QUIZ_IN_DATABASE", 0);
         setContentView(R.layout.activity_take_quiz);
     }
 
@@ -30,7 +32,7 @@ public class TakeQuizActivity extends AppCompatActivity {
         QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
             @Override
             public void onLoad(List<Quiz> quizzes) {
-                Quiz current = quizzes.get(0);
+                Quiz current = quizzes.get(quizIndex);
                 String currentTitle = current.getTitle();
 //                Log.i("TakeQuizActivity", currentTitle);  DEBUGGING CODE, NOT NEEDED?
                 TextView quizName = findViewById(R.id.quiz_name);
