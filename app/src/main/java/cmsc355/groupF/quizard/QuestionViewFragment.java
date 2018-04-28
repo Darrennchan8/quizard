@@ -85,7 +85,7 @@ public class QuestionViewFragment extends Fragment {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     View answerChoice = inflater.inflate(R.layout.multiple_choice_answer, mAnswerList, false);
                     mAnswerList.addView(answerChoice, mAnswerList.getChildCount());
-                    TextView answerText = answerChoice.findViewById(R.id.answer_option);
+                    TextView answerText = answerChoice.findViewById(R.id.selection_button);
                     answerText.setText(answers.get(i).getText());
                 }
                 break;

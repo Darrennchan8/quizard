@@ -85,12 +85,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
-        <LinearLayout
+        <RadioGroup
             android:id="@+id/answer_choice_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        </LinearLayout>
+        </RadioGroup>
     </ScrollView>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
