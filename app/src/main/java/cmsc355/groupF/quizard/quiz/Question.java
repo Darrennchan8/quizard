@@ -12,6 +12,7 @@ public class Question {
     private String questionText;
     private List<MultipleChoiceAnswer> multipleChoiceAnswers;
     private String shortAnswer;
+    private String studentShortAnswer;
 
     public Question() {
         this(QuestionType.MULTIPLE_CHOICE);
@@ -26,6 +27,7 @@ public class Question {
         this.questionText = questionText;
         this.multipleChoiceAnswers = new ArrayList<>();
         this.shortAnswer = "";
+        this.studentShortAnswer = "";
     }
 
     public Question(@NonNull String questionText, @NonNull List<MultipleChoiceAnswer> multipleChoiceAnswers) {
@@ -78,6 +80,14 @@ public class Question {
         this.shortAnswer = shortAnswer;
     }
 
+    public String getStudentShortAnswer() {
+        return this.studentShortAnswer;
+    }
+
+    public void setStudentShortAnswer(String studentShortAnswer) {
+        this.studentShortAnswer = studentShortAnswer;
+    }
+
     public boolean isCorrect(String answer) {
         switch (getQuestionType()) {
             case MULTIPLE_CHOICE:
@@ -91,6 +101,21 @@ public class Question {
             default:
                 return this.getShortAnswer().equals(answer);
         }
+    }
+
+    public boolean isStudentCorrect() {
+        switch (this.getQuestionType()) {
+            case MULTIPLE_CHOICE:
+                for (MultipleChoiceAnswer answer : this.multipleChoiceAnswers) {
+                    if (!answer.isStudentCorrect()) {
+                        return false;
+                    }
+                }
+                break;
+            case SHORT_ANSWER:
+                return this.shortAnswer.equals(this.studentShortAnswer);
+        }
+        return true;
     }
 
     public boolean isCorrect(int answerIndex) {

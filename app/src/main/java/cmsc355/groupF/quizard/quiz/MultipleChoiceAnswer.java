@@ -3,10 +3,12 @@ package cmsc355.groupF.quizard.quiz;
 public class MultipleChoiceAnswer {
     private String text;
     private boolean correct;
+    private boolean studentChoice;
 
     public MultipleChoiceAnswer(String text, boolean correct) {
         this.setText(text);
         this.setCorrect(correct);
+        this.setStudentChoice(false);
     }
 
     public MultipleChoiceAnswer(String text) {
@@ -30,6 +32,18 @@ public class MultipleChoiceAnswer {
 
     public void setCorrect(boolean correct) {
         this.correct = correct;
+    }
+
+    public boolean getStudentChoice() {
+        return this.studentChoice;
+    }
+
+    public void setStudentChoice(boolean selected) {
+        this.studentChoice = selected;
+    }
+
+    public boolean isStudentCorrect() {
+        return isCorrect() == getStudentChoice();
     }
 
     @Override

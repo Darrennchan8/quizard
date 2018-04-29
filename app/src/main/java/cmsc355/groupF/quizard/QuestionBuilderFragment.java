@@ -26,7 +26,6 @@ import cmsc355.groupF.quizard.quiz.QuestionType;
  */
 public class QuestionBuilderFragment extends Fragment {
 
-
     private Question mQuestion;
 
     @Override

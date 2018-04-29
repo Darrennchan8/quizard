@@ -2,26 +2,19 @@ package cmsc355.groupF.quizard;
 
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseError;
-
-import java.util.List;
-
 import cmsc355.groupF.quizard.quiz.MultipleChoiceAnswer;
 import cmsc355.groupF.quizard.quiz.Question;
-import cmsc355.groupF.quizard.quiz.Quiz;
-import cmsc355.groupF.quizard.quiz.QuizUtils;
 
 
 /**
@@ -30,69 +23,77 @@ import cmsc355.groupF.quizard.quiz.QuizUtils;
 public class QuestionViewFragment extends Fragment {
 
     private Question mQuestion;
-    private int mQuestionNum;
 
     public QuestionViewFragment() {
-        this(new Question());
-    }
-
-    //ANDROID STUDIO WARNS THAT THIS CONSTRUCTOR SHOULD NOT BE USED
-    public QuestionViewFragment(Question question) {
-        mQuestion = question;
-    }
-
-    public void setmQuestionNum(int mQuestionNum) {
-        this.mQuestionNum = mQuestionNum;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_question_view, container, false);
     }
 
     @Override
-    @SuppressWarnings("ConstantConditions")
     public void onStart() {
         super.onStart();
-        fragmentBuild(mQuestion);
     }
 
-    public void fragmentBuild(Question question) {
+    public void useQuestion(Question question) {
+        this.mQuestion = question;
+    }
 
-        final LinearLayout mAnswerList = getView().findViewById(R.id.answer_choice_list);
-        final ScrollView mAnswers = getView().findViewById(R.id.multiple_choice_answer_section);
-        final ConstraintLayout shortResponseAnswer = getView().findViewById(R.id.short_response_answer);
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (this.mQuestion != null && getView() != null) {
+            EditText shortResponseField = getView().findViewById(R.id.answer_short_response);
+            this.mQuestion.setStudentShortAnswer(shortResponseField.getText().toString());
+        }
+    }
 
-//NEED TO GET INDEX AND TOTAL FROM PAGEADAPTER SOMEHOW, position VARIABLE?
-        TextView questionNum = getView().findViewById(R.id.question_num);
-//        questionNum.setText(question.getQuestionText());
-        TextView questionTotal = getView().findViewById(R.id.num_questions);
-//        questionTotal.setText(question.getQuestionText());
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (this.mQuestion != null && getView() != null) {
+            TextView questionText = getView().findViewById(R.id.question_text);
+            ScrollView multipleChoiceSection = getView().findViewById(R.id.multiple_choice_wrapper);
+            final RadioGroup multipleChoiceField = multipleChoiceSection.findViewById(R.id.answer_multiple_choice);
+            EditText shortResponseField = getView().findViewById(R.id.answer_short_response);
 
-        //set the question text for each question
-        TextView questionText = getView().findViewById(R.id.question_text);
-        questionText.setText(question.getQuestionText());
+            questionText.setText(this.mQuestion.getQuestionText());
+            multipleChoiceField.removeAllViews();
+            shortResponseField.getText().clear();
+            shortResponseField.setVisibility(View.GONE);
+            multipleChoiceSection.setVisibility(View.GONE);
 
-        switch(question.getQuestionType()){
-            case MULTIPLE_CHOICE:
-                mAnswers.setVisibility(View.VISIBLE);
-                shortResponseAnswer.setVisibility(View.GONE);
-                List<MultipleChoiceAnswer> answers = question.getMultipleChoiceAnswers();
-                for(int i = 0; i < answers.size(); i++) {
-                    //USE LAYOUT INFLATER HERE TO MAKE EACH NEW ANSWER OPTION
-                    LayoutInflater inflater = LayoutInflater.from(getContext());
-                    View answerChoice = inflater.inflate(R.layout.multiple_choice_answer, mAnswerList, false);
-                    mAnswerList.addView(answerChoice, mAnswerList.getChildCount());
-                    TextView answerText = answerChoice.findViewById(R.id.selection_button);
-                    answerText.setText(answers.get(i).getText());
-                }
-                break;
-            case SHORT_ANSWER:
-                mAnswers.setVisibility(View.GONE);
-                shortResponseAnswer.setVisibility(View.VISIBLE);
-                break;
+            switch (this.mQuestion.getQuestionType()) {
+                case MULTIPLE_CHOICE:
+                    multipleChoiceSection.setVisibility(View.VISIBLE);
+                    for (MultipleChoiceAnswer answer : this.mQuestion.getMultipleChoiceAnswers()) {
+                        RadioButton answerRadio = (RadioButton) LayoutInflater.from(getContext())
+                                .inflate(R.layout.multiple_choice_answer, multipleChoiceField, false);
+                        answerRadio.setText(answer.getText());
+                        answerRadio.setChecked(answer.getStudentChoice());
+                        answerRadio.setId(multipleChoiceField.getChildCount());
+                        multipleChoiceField.addView(answerRadio);
+                    }
+                    multipleChoiceField.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                        Integer previousCheckedIndex = null;
+
+                        @Override
+                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                            if (previousCheckedIndex != null) {
+                                mQuestion.getMultipleChoiceAnswers().get(previousCheckedIndex).setStudentChoice(false);
+                            }
+                            mQuestion.getMultipleChoiceAnswers().get(checkedId).setStudentChoice(true);
+                        }
+                    });
+                    break;
+                case SHORT_ANSWER:
+                    shortResponseField.setVisibility(View.VISIBLE);
+                    shortResponseField.setText(mQuestion.getStudentShortAnswer());
+                    break;
+            }
         }
     }
 }

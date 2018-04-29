@@ -19,15 +19,42 @@ public class QuestionViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_view);
-        final QuestionViewPageAdapter questionViewPageAdapter = new QuestionViewPageAdapter(getSupportFragmentManager());
         final ViewPager viewPager = findViewById(R.id.root_view);
         final int quizIndex = getIntent().getIntExtra(FindQuizActivity.QUIZ_INDEX, 0);
+
         QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
             @Override
             public void onLoad(List<Quiz> quizzes) {
-                Quiz current = quizzes.get(quizIndex);
-                questionViewPageAdapter.populateQuiz(current);
+                Quiz targetQuiz = quizzes.get(quizIndex);
+                final QuestionViewPageAdapter questionViewPageAdapter =
+                        new QuestionViewPageAdapter(getSupportFragmentManager(), targetQuiz);
                 viewPager.setAdapter(questionViewPageAdapter);
+
+                viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    private int currPage = 0;
+
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        questionViewPageAdapter.getItem(currPage).onPause();
+                        questionViewPageAdapter.getItem(position).onResume();
+                        currPage = position;
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+                        if (state == ViewPager.SCROLL_STATE_IDLE) {
+                            viewPager.requestFocus();
+                            InputMethodManager Ime = ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE));
+                            if (Ime != null) {
+                                Ime.hideSoftInputFromWindow(viewPager.getWindowToken(), 0);
+                            }
+                        }
+                    }
+                });
             }
 
             @Override
@@ -35,34 +62,7 @@ public class QuestionViewActivity extends AppCompatActivity {
             }
         });
 
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            private int currPage = 0;
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                questionViewPageAdapter.getItem(currPage).onPause();
-                questionViewPageAdapter.getItem(position).onResume();
-                currPage = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if (state == ViewPager.SCROLL_STATE_IDLE) {
-                    viewPager.requestFocus();
-                    InputMethodManager Ime = ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE));
-                    if (Ime != null) {
-                        Ime.hideSoftInputFromWindow(viewPager.getWindowToken(), 0);
-                    }
-                }
-            }
-        });
-
-//BELOW HERE IS FOR WHEN SUBMITTING THE QUIZ ANSWERS I THINK
+//        BELOW HERE IS FOR WHEN SUBMITTING THE QUIZ ANSWERS I THINK
 //        questionViewPageAdapter.setOnSubmitListener(new QuestionViewPageAdapter.OnSubmitListener() {
 //            @Override
 //            public void onSubmit(Quiz quiz) {
