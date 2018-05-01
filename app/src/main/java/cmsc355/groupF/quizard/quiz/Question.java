@@ -107,11 +107,11 @@ public class Question {
         switch (this.getQuestionType()) {
             case MULTIPLE_CHOICE:
                 for (MultipleChoiceAnswer answer : this.multipleChoiceAnswers) {
-                    if (!answer.isStudentCorrect()) {
-                        return false;
+                    if (answer.isCorrect() && answer.isStudentCorrect()) {
+                        return true;
                     }
                 }
-                break;
+                return false;
             case SHORT_ANSWER:
                 return this.shortAnswer.equals(this.studentShortAnswer);
         }

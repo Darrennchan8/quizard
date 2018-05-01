@@ -63,6 +63,14 @@ public class Quiz {
                 '}';
     }
 
+    public double grade() {
+        int correct = 0;
+        for (Question q : this.questions) {
+            correct += q.isStudentCorrect() ? 1 : 0;
+        }
+        return 100.0 * correct / this.questions.size();
+    }
+
     public static Quiz mockQuiz() {
         Quiz quiz = new Quiz("Presidents Quiz", "Presidents!");
         quiz.addQuestion(new Question("Who is the president of the United States?", new ArrayList<MultipleChoiceAnswer>() {{

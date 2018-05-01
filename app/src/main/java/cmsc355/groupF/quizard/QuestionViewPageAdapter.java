@@ -13,10 +13,6 @@ import cmsc355.groupF.quizard.quiz.Quiz;
 
 public class QuestionViewPageAdapter extends FragmentStatePagerAdapter implements ViewPagerBuilder.RobustAdapter {
 
-    public interface QuizSubmitListener {
-        void quizSubmit(Quiz quiz);
-    }
-
     @Override
     public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
@@ -25,26 +21,21 @@ public class QuestionViewPageAdapter extends FragmentStatePagerAdapter implement
     private List<Question> mQuestions;
     private QuestionViewFragment[] mQuestionViews;
     private SubmitQuizFragment mSubmitFragment;
-    private QuizSubmitListener mListener;
+    private SubmitQuizFragment.QuizSubmitListener mListener;
 
     public QuestionViewPageAdapter(FragmentManager fm, Quiz quiz) {
         super(fm);
         this.mQuestions = quiz.getQuestions();
         this.mQuestionViews = new QuestionViewFragment[quiz.getQuestions().size()];
         this.mSubmitFragment = new SubmitQuizFragment();
-        this.setQuizSubmitListener(null);
-    }
-
-    private SubmitQuizFragment newSubmitQuizFragment() {
-        SubmitQuizFragment fragment = new SubmitQuizFragment();
-        fragment.setQuizSubmitListener(new SubmitQuizFragment.QuizSubmitListener() {
-
+        this.mSubmitFragment.setOnQuizSubmitListener(new SubmitQuizFragment.QuizSubmitListener() {
             @Override
-            public void quizSubmit(Quiz quiz) {
-                mListener.quizSubmit(quiz); //FILL IN WITH AN ACTUAL QUIZ (MAYBE)
+            public void onSubmit() {
+                if (mListener != null) {
+                    mListener.onSubmit();
+                }
             }
         });
-        return fragment;
     }
 
     @Override
@@ -60,7 +51,7 @@ public class QuestionViewPageAdapter extends FragmentStatePagerAdapter implement
         }
     }
 
-    public void setQuizSubmitListener(QuizSubmitListener listener) {
+    public void setOnQuizSubmitListener(SubmitQuizFragment.QuizSubmitListener listener) {
         this.mListener = listener;
     }
 

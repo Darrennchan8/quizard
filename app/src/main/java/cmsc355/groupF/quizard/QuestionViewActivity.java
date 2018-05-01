@@ -34,15 +34,19 @@ public class QuestionViewActivity extends AppCompatActivity {
             public void onLoad(List<Quiz> quizzes) {
                 final Quiz targetQuiz = quizzes.get(quizIndex);
                 final QuestionViewPageAdapter questionViewPageAdapter = new QuestionViewPageAdapter(getSupportFragmentManager(),targetQuiz);
+                questionViewPageAdapter.setOnQuizSubmitListener(new SubmitQuizFragment.QuizSubmitListener() {
+                    @Override
+                    public void onSubmit() {
+                        Log.e(getClass().getName(), "Grade: " + targetQuiz.grade());
+                    }
+                });
                 final ViewPager viewPager =
                         new ViewPagerBuilder(QuestionViewActivity.this).setPageChangeHook(new ViewPagerBuilder.PageChangeHook() {
                                     @Override
                                     public String getAppBarText(int position, int total) {
-                                        if(position < total) {
-                                            return getString(R.string.question_i_of_n, position, total - 1);
-                                        } else {
-                                            return targetQuiz.getTitle();
-                                        }
+                                        return position < total ?
+                                                getString(R.string.question_i_of_n, position, total - 1) :
+                                                targetQuiz.getTitle();
                                     }
                                 })
                                 .build(R.id.root_view, questionViewPageAdapter);
@@ -70,27 +74,6 @@ public class QuestionViewActivity extends AppCompatActivity {
                                 Ime.hideSoftInputFromWindow(viewPager.getWindowToken(), 0);
                             }
                         }
-                    }
-                });
-                questionViewPageAdapter.setQuizSubmitListener(new QuestionViewPageAdapter.QuizSubmitListener() {
-                    @Override
-                    public void quizSubmit(Quiz quiz) {
-                        Log.d(getClass().getName(),"SUBMIT METHOD ACCESSED IN QUESTIONVIEWACTIVITY");
-                        final Snackbar loadingBar = Snackbar.make(viewPager, R.string.submitting_quiz, Snackbar.LENGTH_INDEFINITE);
-                        loadingBar.show();
-                        QuizUtils.submit(quiz, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                loadingBar.dismiss();
-                                if (databaseError == null) {
-                                    setResult(SubmitStatus.SUBMITTED);
-                                    finish();
-                                } else {
-                                    Log.e(getClass().getName(), databaseError.toString());
-                                    Snackbar.make(viewPager, R.string.error_submitting_quiz, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
-                        });
                     }
                 });
             }

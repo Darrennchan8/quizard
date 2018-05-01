@@ -19,7 +19,7 @@ public class SubmitQuizFragment extends Fragment {
     private QuizSubmitListener mListener;
 
     public interface QuizSubmitListener {
-        void quizSubmit(Quiz quiz);
+        void onSubmit();
     }
 
     public SubmitQuizFragment() {
@@ -41,13 +41,13 @@ public class SubmitQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.quizSubmit(new Quiz()); //FILL IN WITH CORRECT QUIZ
+                    mListener.onSubmit();
                 }
             }
         });
     }
 
-    public void setQuizSubmitListener(QuizSubmitListener listener) {
+    public void setOnQuizSubmitListener(QuizSubmitListener listener) {
         this.mListener = listener;
     }
 
