@@ -1,15 +1,14 @@
 package cmsc355.groupF.quizard;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -37,7 +36,17 @@ public class QuestionViewActivity extends AppCompatActivity {
                 questionViewPageAdapter.setOnQuizSubmitListener(new SubmitQuizFragment.QuizSubmitListener() {
                     @Override
                     public void onSubmit() {
-                        Log.e(getClass().getName(), "Grade: " + targetQuiz.grade());
+                        AlertDialog dialog = new AlertDialog.Builder(QuestionViewActivity.this)
+                                .setTitle(R.string.results)
+                                .setMessage(getString(R.string.you_received_percentage, Math.round(targetQuiz.grade())))
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                                .create();
+                        dialog.show();
                     }
                 });
                 final ViewPager viewPager =

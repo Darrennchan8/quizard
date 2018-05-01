@@ -44,4 +44,6 @@
     <string name="incorrect_password">Password Incorrect, Try Again</string>
     <string name="begin">Begin</string>
     <string name="find_quiz_text_view">Enter name of quiz:</string>
+    <string name="results">Results</string>
+    <string name="you_received_percentage">You received %1$d%%</string>
 </resources>
