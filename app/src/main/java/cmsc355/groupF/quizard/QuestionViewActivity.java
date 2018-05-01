@@ -25,21 +25,21 @@ public class QuestionViewActivity extends AppCompatActivity {
         QuizUtils.getAllQuizzes(new QuizUtils.QuizQueryCallback() {
             @Override
             public void onLoad(List<Quiz> quizzes) {
-                Quiz targetQuiz = quizzes.get(quizIndex);
+                final Quiz targetQuiz = quizzes.get(quizIndex);
                 final QuestionViewPageAdapter questionViewPageAdapter = new QuestionViewPageAdapter(getSupportFragmentManager(),targetQuiz);
                 final ViewPager viewPager =
                         new ViewPagerBuilder(QuestionViewActivity.this).setPageChangeHook(new ViewPagerBuilder.PageChangeHook() {
                                     @Override
                                     public String getAppBarText(int position, int total) {
-                                        return getString(R.string.question_i_of_n, position, total);
+                                        if(position < total) {
+                                            return getString(R.string.question_i_of_n, position, total - 1);
+                                        } else {
+                                            return targetQuiz.getTitle();
+                                        }
                                     }
                                 })
                                 .build(R.id.root_view, questionViewPageAdapter);
-                //        final ViewPager viewPager = findViewById(R.id.root_view);
-                //final QuestionViewPageAdapter questionViewPageAdapter =
-                        //new QuestionViewPageAdapter(getSupportFragmentManager(), targetQuiz);
                 viewPager.setAdapter(questionViewPageAdapter);
-
                 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     private int currPage = 0;
 
@@ -71,10 +71,6 @@ public class QuestionViewActivity extends AppCompatActivity {
             public void onError(DatabaseError err) {
             }
         });
-
-
-
-
 
 //        BELOW HERE IS FOR WHEN SUBMITTING THE QUIZ ANSWERS I THINK
 //        questionViewPageAdapter.setOnSubmitListener(new QuestionViewPageAdapter.OnSubmitListener() {

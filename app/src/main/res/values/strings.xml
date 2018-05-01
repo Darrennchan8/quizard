@@ -32,10 +32,11 @@
     <string name="error_publishing_quiz">There was an error publishing the quiz.</string>
     <string name="quiz_not_published">The Quiz Was Not Published.</string>
     <string name="question_i_of_n">Question %1$d of %2$d</string>
-
     <string name="title_activity_question_view">Quiz Name</string>
     <string name="question_number">1</string>
     <string name="question_total">20</string>
+    <string name="submit">Submit Quiz for Grading</string>
     <string name="begin">Begin</string>
     <string name="find_quiz_text_view">Enter name of quiz:</string>
+    
 </resources>

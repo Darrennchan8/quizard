@@ -22,11 +22,9 @@ public class NewQuestionFragment extends Fragment {
         void publishQuiz();
     }
 
-
     public NewQuestionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
