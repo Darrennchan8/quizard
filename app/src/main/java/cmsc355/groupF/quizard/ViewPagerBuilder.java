@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
 public class ViewPagerBuilder {
@@ -67,7 +68,11 @@ public class ViewPagerBuilder {
                 }
             }
         });
+        if (!(adapter instanceof PagerAdapter)) {
+            throw new IllegalArgumentException("adapter must extend either FragmentPagerAdapter or FragmentStatePagerAdapter");
+        }
         viewPager.setAdapter((PagerAdapter) adapter);
+        updateAppBar();
         return viewPager;
     }
 

@@ -3,13 +3,14 @@ package cmsc355.groupF.quizard;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.List;
 
 import cmsc355.groupF.quizard.quiz.Question;
 import cmsc355.groupF.quizard.quiz.Quiz;
 
-public class QuestionViewPageAdapter extends FragmentStatePagerAdapter {
+public class QuestionViewPageAdapter extends FragmentStatePagerAdapter implements ViewPagerBuilder.RobustAdapter {
     private List<Question> mQuestions;
     private QuestionViewFragment[] mQuestionViews;
 
