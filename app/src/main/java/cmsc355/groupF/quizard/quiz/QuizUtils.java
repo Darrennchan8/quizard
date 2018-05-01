@@ -1,5 +1,7 @@
 package cmsc355.groupF.quizard.quiz;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +24,14 @@ public class QuizUtils {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
                 .child(QUIZZES_ARRAY_KEY).push();
         ref.setValue(quiz, completionListener);
+    }
+
+    public static void submit(Quiz quiz, DatabaseReference.CompletionListener completionListener) {
+        Log.d(new QuizUtils().getClass().getName(), "SUBMIT METHOD ACCESSED IN QUIZUTILS");
+
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
+//                .child(QUIZZES_ARRAY_KEY).push();
+//        ref.setValue(quiz, completionListener);
     }
 
     public static void getAllQuizzes(final QuizQueryCallback callback) {

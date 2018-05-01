@@ -40,8 +40,8 @@ public class QuestionViewPageAdapter extends FragmentStatePagerAdapter implement
         fragment.setQuizSubmitListener(new SubmitQuizFragment.QuizSubmitListener() {
 
             @Override
-            public void submitQuiz() {
-//                mListener.quizSubmit(generateQuiz());
+            public void quizSubmit(Quiz quiz) {
+                mListener.quizSubmit(quiz); //FILL IN WITH AN ACTUAL QUIZ (MAYBE)
             }
         });
         return fragment;

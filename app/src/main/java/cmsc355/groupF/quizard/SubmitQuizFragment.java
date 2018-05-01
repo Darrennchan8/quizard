@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import cmsc355.groupF.quizard.quiz.Quiz;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +19,7 @@ public class SubmitQuizFragment extends Fragment {
     private QuizSubmitListener mListener;
 
     public interface QuizSubmitListener {
-        void submitQuiz();
+        void quizSubmit(Quiz quiz);
     }
 
     public SubmitQuizFragment() {
@@ -39,7 +41,7 @@ public class SubmitQuizFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.submitQuiz();
+                    mListener.quizSubmit(new Quiz()); //FILL IN WITH CORRECT QUIZ
                 }
             }
         });
